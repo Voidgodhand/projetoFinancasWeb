@@ -1,0 +1,59 @@
+<!-- login.component.html -->
+<div class="d-flex justify-content-center align-items-center min-vh-100"
+     style="background: linear-gradient(135deg, #4e73df, #1cc88a);">
+  <div class="card shadow p-4" style="width: 24rem;">
+    <div class="text-center mb-2">
+        <img src="https://www.cotiinformatica.com.br/imagens/logo-coti-informatica.svg">
+    </div>
+    <h2 class="text-center"><strong>Finanças Web</strong></h2>
+    <p class="text-center">Entre com sua conta de usuário.</p>
+
+    <div class="text-center text-danger mb-2">
+      <strong>{{ mensagemErro() }}</strong>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          id="email"
+          placeholder="Digite seu e-mail"
+          required
+        />
+        <div class="text-danger" *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+          Por favor, informe um endereço de <strong>email</strong> válido.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Senha</label>
+        <input
+          type="password"
+          formControlName="senha"
+          class="form-control"
+          id="password"
+          placeholder="Digite sua senha"
+          required
+        />
+        <div class="text-danger" *ngIf="form.get('senha')?.touched && form.get('senha')?.invalid">
+          Por favor, informe a <strong>senha</strong> com pelo menos 8 caracteres.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100 mt-3"
+        [disabled]="form.invalid">
+        Entrar
+      </button>
+
+      <div class="text-center mt-3">
+        <a routerLink="/criar-usuario">Não tem conta? Cadastre-se aqui</a>
+      </div>
+
+    </form>
+
+  </div>
+</div>
